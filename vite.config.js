@@ -1,16 +1,16 @@
+import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
-export default {
+export default defineConfig({
   plugins: [react()],
   build: {
-    outDir: "dist",
-    sourcemap: true,
+    rollupOptions: {
+      input: {
+        main: "./src/main.tsx",
+      },
+      output: {
+        entryFileNames: "embedded-chatbot.js",
+      },
+    },
   },
-  define: {
-    "import.meta.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV),
-  },
-  envPrefix: "VF_",
-  server: {
-    port: 3006,
-  },
-};
+});
