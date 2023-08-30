@@ -1,5 +1,7 @@
 (function () {
-  var chatbotContainer = document.getElementById("chatbot-container");
+  const chatbotContainer = document.createElement("div");
+  chatbotContainer.id = "chatbot-container";
+  document.body.appendChild(chatbotContainer);
 
   if (chatbotContainer) {
     var script = document.createElement("script");

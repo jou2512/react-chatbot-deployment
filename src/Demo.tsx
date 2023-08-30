@@ -1,5 +1,3 @@
-import 'react-calendar/dist/Calendar.css';
-
 import { Chat, ChatWindow, Launcher, RuntimeAPIProvider, SessionStatus, SystemResponse, TurnType, UserResponse } from '@voiceflow/react-chat';
 import { useContext, useState } from 'react';
 import { match } from 'ts-pattern';
