@@ -4,7 +4,6 @@ import { match } from 'ts-pattern';
 
 import { RuntimeContext } from './context';
 import { DemoContainer } from './styled';
-import React from 'react';
 
 const IMAGE = 'https://picsum.photos/seed/1/200/300';
 const AVATAR = 'https://picsum.photos/seed/1/80/80';
@@ -66,12 +65,12 @@ export const Demo: React.FC = () => {
           >
             {runtime.session.turns.map((turn, turnIndex) =>
               match(turn)
-                .with({ type: TurnType.USER }, ({ id, type: _, ...rest }) => <UserResponse {...rest} key={id} />)
-                .with({ type: TurnType.SYSTEM }, ({ id, type: _, ...rest }) => (
+                .with({ type: TurnType.USER }, ({ id, type, ...rest }: { id: string; type: TurnType; }) => <UserResponse {...rest} key={id} />)
+                .with({ type: TurnType.SYSTEM },({ id, type, ...rest }: { id: string; type: TurnType;}) => (
                   <SystemResponse
                     {...rest}
                     key={id}
-                    Message={({ message, ...props }) =>
+                    Message={({ message, ...props }: { message: string }) =>
                       match(message)
                         .otherwise(() => <SystemResponse.SystemMessage {...props} message={message} />)
                     }
